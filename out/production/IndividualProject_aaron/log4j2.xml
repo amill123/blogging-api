@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <!-- Console Appender -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <!-- See https://logging.apache.org/log4j/2.x/manual/layouts.html#PatternLayout -->
+                <!-- Level | DateTime | Class.Method() (File.java:line) - Message -->
+                <Pattern>%-5p | %d{HH:mm:ss} | %C{1}.%M() (%F:%L) - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

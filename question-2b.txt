@@ -1,0 +1,77 @@
+Your answer here
+
+Below is the modified version of the endpoints. Some of the end points aren't used in the website, however for an API which is available for developers to access
+information and manipulate it to how they want, it's been left in. The likes endpoints, whilst I've removed them from the JavaScript can be useful in some instances.
+For example if you were wanting to create a article suggestions list based of the articles a user has liked (maybe in the future category tags may be added)
+the article list a user has liked may be helpful. Alternative if you were wanting to categorise the users who have liked your article the article parameter
+could also be useful (plus with added information which isn't tracked just yet. For example accessing all the articles in the database, or accessing individual articles (have also added
+the authors first and last names to this endpoint, as it is important information I see should be returned with an article). I've modified the endpoint for userDAO no params
+to include last name as there might be multiple users with the same first name. This is to help developers in the future if they're wanting to add a search
+navigation function for finding a particular author (should they desire to use this end point). 
+
+When creating the array of Article objects that a user has liked, I chose to omit the content and author names. Potentially in the future these may be included in
+the endpoint, but for the purpose of what I needed it fit just to return the id and article title. Potentially, in the future, clicking on the article title will take you to that
+particular article.
+
+=================================================================================================================================================================
+
+Articles
+
+Parameter       Expected Value      Conflicts With      Description                                                     	Example Usage
+
+		No Parameters				Returns an array of all the articles in the form of objects.
+							Each article object contains an ID, author ID, title, and 
+							truncated content
+
+id		An articles ID	    from, count,	Returns an object containing the details of an article. The 
+				    author_id		details provided are the article id, article title, article   
+							content, author id, author first name, author last name. An error
+							is returned if the ID is not found.
+
+from		DEFAULT: 0. A 	    id, author_id	Returns an array of article objects, starting from the "from'th"
+		zero-based 				element anf retrieving the "count" number. Each article object
+		starting index				contains an id, author id, title, content, author first name, 
+		for retrieving				author last name. If the from or count will cause the range to 
+		articles				fall outside of the bounds, the array may contain less than the 
+							count number of elements.
+
+count		DEFAULT: 5. A	    id, author_id	*see "from" parameter description
+		number of articles
+		to retrieve		
+
+
+
+
+author_id       An author's ID      from, count, id     Returns an array of all the articles by the selected author.
+							Each article object contains an ID, author ID, title, and 
+							content.
+
+=================================================================================================================================================================
+
+Users
+
+Parameter       Expected Value      Conflicts With      Description                                                     	Example Usage
+
+		No parameters				Returns an array of all users in the form of objects. Each user
+							object contains an id, a first name and a last name.
+
+id		An author's ID				Returns an object containing the details of a user. The details
+							provided are the user id, first name, last name, gender, and an
+							array containing article objects that a user has liked that have 
+							the article id and article title.
+
+=================================================================================================================================================================
+
+Likes
+
+Parameter       Expected Value      Conflicts With      Description                                                     	Example Usage
+
+article		An article ID	    user		Returns an array of user ids that have liked that specified article.
+							If there are no likes on the article, or if the article does not
+							exist, an empty array is returned.
+
+user		A user ID	    article		Returns an array of article ids that have been liked by the
+							specified user. If the user has not liked any articles, or if the
+							user does not exist, an empty array is returned.
+
+

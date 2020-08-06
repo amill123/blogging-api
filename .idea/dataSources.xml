@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="amil721@db.trex-sandwich.com" uuid="2c1e5e27-0a6f-4be7-b58f-45e8cea62078">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://db.trex-sandwich.com:3306/amil721</jdbc-url>
+    </data-source>
+  </component>
+</project>

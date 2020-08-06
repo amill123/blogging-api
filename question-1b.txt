@@ -1,0 +1,29 @@
+Your answer here
+
+To identify issues with the current website, we'll first identify what actions the website currently takes - so that we can identify the issues and then resolve them.
+Currently the website does the following:
+ - Loads 2 articles at a time (initially loading 2 when the page first loads)
+    - For each article it fetches the article's user details and displays the users first and last names
+    - The article's author can be selected to load the authors details in the User Details column
+    - For each article it displays a truncated version of the content, to begin with
+    - An article can have its full content shown by selecting the "Show full content" button which performs a fetch to the database to return the articles content
+ - When an author's name is clicked
+    - A fetch returns the author's details
+    - Based on the author's id, a fetch is performed to get a list of the author's liked articles' ids
+    - Once the list of liked article ids is returned each article is individually fetched from the database
+
+Problems with Design and possible solutions
+In general, there are far too many fetches which visibly slows down the loading of each segment in the page. The below list addresses what I see to be the issues, and how I've chosen to address them.
+    - An extra fetch to return the articles full content, this shouldn't be required. Instead truncating the content for all articles, or a range of articles, we'll return the full content of each article. That way we already have access to the full content. The content can be truncated in the front-end, if desired by the developers.
+    We could either save the full content to a global variable (and access it using the article ID) or save it as an attribute. (Fun fact, as of HTML5  - HTML attributes don't have a size limit, though the larger the size the slower things may become ~ this is also the same for storing content in variables)
+
+    - In the users panel you can visibly see the user's details load first, and then each individual article name (as each artice name has it's own individual fetch). As they're in the same panel, you want them to load at the same time.
+     To solve this issue, what we'll do is add the array of liked article names to the user's contact details when they're returned, using an additional SQL query to retrieve the list. Something worth considering is adding the articles' IDs to the article names as in the future these liked article names may link
+	to the actual article. Alternative could embed the liked articles into the array also, so that the content, title, etc is already accessed and another fetch won't be required.
+
+    - When loading the next two articles, you can visibly see a difference between when each article loads. This is due to the additional fetch to retrieve the authors name.
+
+
+Because the number of articles for this project is small, you could fetch the entire list of article objects and store it as a global array, so that no further article fetches were required. Then access the array of articles each time you wanted to load a couple more blogs.
+ However, this is not a recommended solution as in the future more articles may be added to the page and the array of articles may become too large and slow the system down.
+I've assumed that loading two truncated articles at a time is a feature of the website, so would not changed this at all. Two truncated articles is enough to fill up the screen space on my laptop. Could consider increasing it from two to say between five and ten but that is personal preference and not really an issue.

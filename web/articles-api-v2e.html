@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Viewer</title>
+    <link rel = "stylesheet" href="./articles.css" type="text/css">
+    <script type = "text/javascript" src="articles-v2e.js"></script>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <h1>An Article Viewer</h1>
+        </div>
+
+        <div id="articles" class="panel">
+            <h2>Articles</h2>
+
+            <!-- Loaded articles should appear here -->
+            <div id="articles-inner"></div>
+
+            <div id="article-load-button" class="article-load button">Load more articles</div>
+        </div>
+
+        <div id="information" class="panel">
+            <h2>User Details</h2>
+
+            <div id="user-details">
+                <p><strong>First Name</strong>: <span id="user-details-first-name"></span></p>
+                <p><strong>Last Name</strong>: <span id="user-details-last-name"></span></p>
+                <p><strong>Gender</strong>: <span id="user-details-gender"></span></p>
+                <p><strong>Liked Articles</strong>:</p>
+                <ul id="user-details-liked-articles"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
